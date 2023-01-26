@@ -271,11 +271,14 @@
                 alerta.classList.add("alert-danger");
                 return ;
             }
-            if (confirm("Tem certeza que quer apagar essa pergunda?")) {
-                baseQuiz.splice(id, 1);
-                localStorage.setItem('baseQuiz', JSON.stringify(baseQuiz));
+            if (confirm("Tem certeza que quer apagar essa pergunta?")) {
+                xhttp.open("DELETE", api + id);
+                xhttp.send();
+                xhttp.onload = function () {
+                alert(this.responseText);
                 limparForm();
                 buscarQuiz();
+                }
             }
 
         }
