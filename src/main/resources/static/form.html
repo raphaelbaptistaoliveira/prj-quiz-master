@@ -266,18 +266,18 @@
 
         function apagar() {
             let id = document.getElementById("id").value;
-            if(id == ""){
+            if (id == "") {
                 alerta.innerHTML = "Necessário selecionar uma pergunta!";
                 alerta.classList.add("alert-danger");
-                return ;
+                return;
             }
             if (confirm("Tem certeza que quer apagar essa pergunta?")) {
                 xhttp.open("DELETE", api + id);
                 xhttp.send();
                 xhttp.onload = function () {
-                alert(this.responseText);
-                limparForm();
-                buscarQuiz();
+                    alert(this.responseText);
+                    limparForm();
+                    buscarQuiz();
                 }
             }
 
