@@ -143,7 +143,7 @@
         }
 
         function fimQuiz() {
-            document.querySelector('h2').innerHTML = 'Resultado do Quiz';
+            document.querySelector('h2').innerHTML = `Resultado do Quiz de (${placar.pessoa})`;
             document.querySelectorAll('h3')[0].innerHTML = `Acertos: ${placar.acertos}`;
             document.querySelectorAll('h3')[1].innerHTML = `Erros: ${placar.erros}`;
 
@@ -155,6 +155,7 @@
 
             document.querySelector('#next').style.display = 'none';
             document.querySelector('#reiniciar').style.display = 'block';
+            salvarPlacar();
         }
         document.querySelector('#reiniciar').style.display = 'none';
 
@@ -193,6 +194,17 @@
                 cont++;
             }
             quiz.respostas = listaTemporaria;
+        }
+
+        placar.pessoa = prompt("Digite seu nome!");
+
+        function salvarPlacar(){
+            xhttp.open("POST", "/api/placar/");
+            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhttp.send(JSON.stringify(placar));
+            xhttp.onload = function () {
+                alert("Placar Salvo");
+            };
         }
 
     </script>
